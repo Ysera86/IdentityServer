@@ -17,6 +17,19 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
     options.Audience = "resource_api1"; // kimi kabul ediyorum ( tokenýn aud kýsmýndaki)
 
 });
+
+builder.Services.AddAuthorization(configure =>
+{
+    configure.AddPolicy("ReadProduct", policy =>
+    {
+        policy.RequireClaim("scope", "api1.read");
+    });
+
+    configure.AddPolicy("UpdateOrCreateProduct", policy =>
+    {
+        policy.RequireClaim("scope", new[] { "api1.update", "api1.write" });
+    });
+});
 // 2si ayný olmalý
 
 //..

@@ -11,6 +11,7 @@ Resource owner credentials grant
 Client credentials grant --> (Bu projede bunu yapýyoruz, bir tek bu grant tipinde refresh token kullanýlamaz)
 
 ENDPOINTS : 
+------------------------------
 Discovery Endpoint : projede olan endpointler
 authorize Endpoint :
 token Endpoint : token almak için
@@ -21,4 +22,8 @@ Revocation Endpoint : tokený geçersiz kýlmak için (örn refresh token çalýnsa onu
 End session Endpoint :
 
 
+Yetkilendirme : 
+------------------------------
+1 - Role based Authorization (adminiuser vs)
+2 - Claim based Authorization ( yaþý 18 ve üstü olanlar vs. örn. dataya göre yetkilendirme yapýlmak istenirse)
 

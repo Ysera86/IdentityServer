@@ -85,6 +85,147 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "API1 GetProducts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7007/api/Products/GetProducts",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7007",
+					"path": [
+						"api",
+						"Products",
+						"GetProducts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "API1 GetProducts With Token",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6IkQ5M0ZERTYxOTZEOUZCODc5MzdDQURERDUyNTczNDQ5IiwidHlwIjoiYXQrand0In0.eyJuYmYiOjE2ODk0MjI5OTksImV4cCI6MTY4OTQyNjU5OSwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzExMiIsImF1ZCI6InJlc291cmNlX2FwaTEiLCJjbGllbnRfaWQiOiJDbGllbnQxIiwianRpIjoiQTlGRDg3MkFBQzJGMEQ1NTc2Qjg1MjdBREVDQTA1RTYiLCJpYXQiOjE2ODk0MjI5OTksInNjb3BlIjpbImFwaTEucmVhZCJdfQ.bNMsIwITYpcsAlBr96rWF5wrd5UX0W0_JVSnyt36VmQICdOycwQL5bomvPI-KqF3P3EqLIX1YBxzcKcDAJ2Ndru3jJNgvW4Qsaqq_xW4JCd6uBeY-9cbMncezg754vGSiZ7QQsPQDcLn7QBuIEH41K29hj2Y91H07q3gqKD_EG-AX4lj39aIbq_zbQEN35wj-dM6yODUdd14ffKQPGt_OcwargxvogJiJfcOR9k8G8LZwCO2caFeu0JE1NC0erxnUD1JWW5_wLqAp4Ze7qgJA0GiQxECxYqJTHulJOgK1eKQO32bWMEODfa8mk9jerzQvOoavXX7gNMjgzqqTI8O9g",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7007/api/Products/GetProducts",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7007",
+					"path": [
+						"api",
+						"Products",
+						"GetProducts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "API1 UpdateProduct",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6IkQ5M0ZERTYxOTZEOUZCODc5MzdDQURERDUyNTczNDQ5IiwidHlwIjoiYXQrand0In0.eyJuYmYiOjE2ODk0MjU4MTksImV4cCI6MTY4OTQyOTQxOSwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzExMiIsImF1ZCI6WyJyZXNvdXJjZV9hcGkxIiwicmVzb3VyY2VfYXBpMiJdLCJjbGllbnRfaWQiOiJDbGllbnQyIiwianRpIjoiNDdEODEzQTg3MTdENzdGMzlEOEVDRjkyQkVGOEJDNDIiLCJpYXQiOjE2ODk0MjU4MTksInNjb3BlIjpbImFwaTEucmVhZCIsImFwaTEudXBkYXRlIiwiYXBpMi51cGRhdGUiLCJhcGkyLndyaXRlIl19.YBxCzLKWtWl8m0FxYVWBD_Om-wmZLGf34UmPRE0ar8-sVoowxZzHLZA2fozdY6IUtbgl07eO28LY82KBDg1Jy_AqVtpUpdPLe_sZQD3uxlVGUWAQ5AXBHYsd_W4H4CS64trfSF0CdKgPWaClvY_KLDDwcw9ene5_HaMjTTH1ks9huCOYvx4In1VQ7i9CgBLBJ71aVOD_spvAiEZfzuuuSFWcUCAE4iIHqxO2C5VUvf6XTOSgU-OAhX9tyboKqVfGzHC7hTojeCFWlf09Qz-pXvANj5gxfUSYgW-r5QgmjpH51x2VW1oqGPooiDu-5-lgfyZvfT1he-GoaER4mbHEtg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7007/api/Products/UpdateProduct?id=2",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7007",
+					"path": [
+						"api",
+						"Products",
+						"UpdateProduct"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "API2 GetPictures",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7156/api/Pictures/GetPictures",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7156",
+					"path": [
+						"api",
+						"Pictures",
+						"GetPictures"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "API2 GetPictures With Token",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6IkQ5M0ZERTYxOTZEOUZCODc5MzdDQURERDUyNTczNDQ5IiwidHlwIjoiYXQrand0In0.eyJuYmYiOjE2ODk0MjQyNDMsImV4cCI6MTY4OTQyNzg0MywiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzExMiIsImF1ZCI6WyJyZXNvdXJjZV9hcGkxIiwicmVzb3VyY2VfYXBpMiJdLCJjbGllbnRfaWQiOiJDbGllbnQyIiwianRpIjoiRjU5NDdEOEJFQkJGRTU0MDJCQzJCRDkzMDc4MkQzQTMiLCJpYXQiOjE2ODk0MjQyNDMsInNjb3BlIjpbImFwaTEucmVhZCIsImFwaTIudXBkYXRlIiwiYXBpMi53cml0ZSJdfQ.ef2a8MRUvOAC8IeN2iPWShVWZLmsC_kcqogNKXqd4EmqGpVi8KlTZKucyluKgz75vyKfnNoTvD4-1rTpkq9zSsIJzBNtKStBalSGdhfertsMjljmzdBQhRagiybfO1FtNTdPkDZ31q1ePkSyFH26W-avf7uUeDDlWRRomimDuJDD3FDH3Oq-IRRpL0CmFN3sXL7m70pCvj7yubBTVHwgfPFTcbKQqHhGWEMtgTY1jjLqun4ld__yK8JLRJNJ4phx8gT4jaemXu9dSDwwkfKCZ5s1kHZDNeuV_kvdREcfincLJkPlk4dKAztvOw-tn84FBf6DU462HSsJ_mkBiDGrOg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7156/api/Pictures/GetPictures",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7156",
+					"path": [
+						"api",
+						"Pictures",
+						"GetPictures"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
