@@ -1,7 +1,34 @@
+using IdentityServer.AuthServer;
+using IdentityServer4.Validation;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+//..
+builder.Services.AddIdentityServer()
+    .AddInMemoryApiResources(Config.GetApiResources())
+    .AddInMemoryApiScopes(Config.GetApiScopes())
+    .AddInMemoryClients(Config.GetClients())
+    
+    //.AddSigningCredential() // proda çýkarken aç
+    .AddDeveloperSigningCredential(); // proda çýkarken kapat
+
+
+// SymmetricKey:  Jwt hem doðrulamak hem imzalamak için ayný þifreyi kullanýyorsak
+// ASymmetricKey:  public key ve private key var, privste tutulur, public key þifreyi çözeceklere verilir, private ile gelen datayý public sahipleri doðrulayabilir.
+
+// IdentityServer asimetrik þifrelemeke kullanýr
+// ilgili tokený privateKey ile þifreler,   authorizationServerýn endpointi var herkese açýk olan, apilar burdan publik key öðreniyorlar. gelen tokený bu publick key ile doðruluyorlar, otomatik olarak.
+
+// AddDeveloperSigningCredential > uygulama geliþtirme esnasýnda private/public oluþturmakla uðraþma, development için imzalama credntialý oluþturucam onu kullan demek - credential bilgileri uygulama içinde-, proda geçerken AddSigningCredential kullan
+
+// credential bilgileri uygulama içinde olmamalý prodda, uygulamayý nerede host ediyorsak oradan almalý
+
+//..
+
+
 
 var app = builder.Build();
 
@@ -17,6 +44,12 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+//..
+
+app.UseIdentityServer();
+
+//..
 
 app.UseAuthorization();
 

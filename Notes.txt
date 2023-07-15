@@ -1,0 +1,24 @@
+IdentityServer4 is an OpenID Connect and OAuth 2.0 framework for ASP.NET Core.
+( https://duendesoftware.com/  olmuþ)
+
+identityserver4.readthedocs.io
+------------------------------
+
+OAuth 2.0 Grants :
+Authorization code grant
+Implicit grant
+Resource owner credentials grant
+Client credentials grant --> (Bu projede bunu yapýyoruz, bir tek bu grant tipinde refresh token kullanýlamaz)
+
+ENDPOINTS : 
+Discovery Endpoint : projede olan endpointler
+authorize Endpoint :
+token Endpoint : token almak için
+UserInfo Endpoint :
+device authorization :   tv gibi clientlar için data girmek zor olan
+Introspection Endpoint: eðer tokený parse edemiyorsan (içeriðini görebilecek bir libraryn yoksa) bana tokený yolla sana içeriðin, json olarak yollayayým diyor.
+Revocation Endpoint : tokený geçersiz kýlmak için (örn refresh token çalýnsa onunla yeni bir acces token almamasý içn o refresh tokený revoke ederiz)
+End session Endpoint :
+
+
+
