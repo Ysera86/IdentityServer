@@ -12,14 +12,15 @@ Client credentials grant --> (Bu projede bunu yapýyoruz, bir tek bu grant tipind
 
 ENDPOINTS : 
 ------------------------------
-Discovery Endpoint : projede olan endpointler
+1 - Discovery Endpoint : projede olan endpointler ve urlleri, scopeler vs : /.well-known/openid-configuration
+>>>> "jwks_uri": "https://localhost:7112/.well-known/openid-configuration/jwks"  sayesinde APIler publick key öðrenebiliyorlar (imza kontrolü sadece - doðru kiþi mi imzalamýþ yani, içerik doðrulama yok)
 authorize Endpoint :
-token Endpoint : token almak için
-UserInfo Endpoint :
-device authorization :   tv gibi clientlar için data girmek zor olan
-Introspection Endpoint: eðer tokený parse edemiyorsan (içeriðini görebilecek bir libraryn yoksa) bana tokený yolla sana içeriðin, json olarak yollayayým diyor.
-Revocation Endpoint : tokený geçersiz kýlmak için (örn refresh token çalýnsa onunla yeni bir acces token almamasý içn o refresh tokený revoke ederiz)
-End session Endpoint :
+2 - Token Endpoint : token almak için : /connect/token
+3 - UserInfo Endpoint :
+4 - Device authorization Endpoint :   tv gibi clientlar için data girmek zor olan
+5 - Introspection Endpoint: eðer tokený parse edemiyorsan (içeriðini görebilecek bir libraryn yoksa) bana tokený yolla sana içeriðin, json olarak yollayayým diyor.
+6 - Revocation Endpoint : tokený geçersiz kýlmak için (örn refresh token çalýnsa onunla yeni bir acces token almamasý içn o refresh tokený revoke ederiz)
+7 - End session Endpoint :
 
 
 Yetkilendirme : 

@@ -7,7 +7,7 @@
 	},
 	"item": [
 		{
-			"name": "Client1",
+			"name": "AuthServer : Client1 token",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -47,7 +47,7 @@
 			"response": []
 		},
 		{
-			"name": "Client2",
+			"name": "AuthServer : Client2 token",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -81,6 +81,49 @@
 					"path": [
 						"connect",
 						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AuthServer : Discovery endpoint",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "client_id",
+							"value": "Client2",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "secret",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "client_credentials",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://localhost:7112/.well-known/openid-configuration",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7112",
+					"path": [
+						".well-known",
+						"openid-configuration"
 					]
 				}
 			},
