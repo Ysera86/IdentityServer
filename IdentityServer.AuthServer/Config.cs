@@ -8,8 +8,17 @@ namespace IdentityServer.AuthServer
         {
             return new List<ApiResource>
             {
-                new ApiResource("resource_api1"){ Scopes = { "api1.read", "api1.write", "api1.update" } },
-                new ApiResource("resource_api2"){ Scopes = { "api2.read", "api2.write", "api2.update" } },
+                // Intrspection endpoint  Basic Auth alıyor ya, onun username ve passwordu bunlar
+                new ApiResource("resource_api1") //username
+                { 
+                    Scopes = { "api1.read", "api1.write", "api1.update" },
+                    ApiSecrets = new[]{new Secret("secretapi1".Sha256())} // password 
+                },
+                new ApiResource("resource_api2")
+                { 
+                    Scopes = { "api2.read", "api2.write", "api2.update" } ,
+                    ApiSecrets = new[]{new Secret("secretapi2".Sha256())}
+                },
             };
         }
 

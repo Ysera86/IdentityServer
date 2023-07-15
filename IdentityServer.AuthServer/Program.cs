@@ -13,7 +13,7 @@ builder.Services.AddIdentityServer()
     .AddInMemoryClients(Config.GetClients())
     
     //.AddSigningCredential() // proda çýkarken aç
-    .AddDeveloperSigningCredential(); // proda çýkarken kapat
+    .AddDeveloperSigningCredential(); // proda çýkarken kapat  => projeye eklendi :  tempkey.jwk
 
 
 // SymmetricKey:  Jwt hem doðrulamak hem imzalamak için ayný þifreyi kullanýyorsak

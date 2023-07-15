@@ -18,7 +18,7 @@ authorize Endpoint :
 2 - Token Endpoint : token almak için : /connect/token
 3 - UserInfo Endpoint :
 4 - Device authorization Endpoint :   tv gibi clientlar için data girmek zor olan
-5 - Introspection Endpoint: eðer tokený parse edemiyorsan (içeriðini görebilecek bir libraryn yoksa) bana tokený yolla sana içeriðin, json olarak yollayayým diyor.
+5 - Introspection Endpoint: eðer tokený parse edemiyorsan (içeriðini görebilecek bir libraryn yoksa) bana tokený yolla sana içeriðin, json olarak yollayayým diyor. -> Ýlgili tokenýn ilgili API için yetkisi var mý?
 6 - Revocation Endpoint : tokený geçersiz kýlmak için (örn refresh token çalýnsa onunla yeni bir acces token almamasý içn o refresh tokený revoke ederiz)
 7 - End session Endpoint :
 

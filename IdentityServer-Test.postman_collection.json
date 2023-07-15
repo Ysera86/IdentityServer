@@ -96,23 +96,7 @@
 				"header": [],
 				"body": {
 					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "client_id",
-							"value": "Client2",
-							"type": "text"
-						},
-						{
-							"key": "client_secret",
-							"value": "secret",
-							"type": "text"
-						},
-						{
-							"key": "grant_type",
-							"value": "client_credentials",
-							"type": "text"
-						}
-					]
+					"urlencoded": []
 				},
 				"url": {
 					"raw": "https://localhost:7112/.well-known/openid-configuration",
@@ -124,6 +108,186 @@
 					"path": [
 						".well-known",
 						"openid-configuration"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AuthServer : Introspection endpoint - Client1 token which is only for API 1",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "resource_api1",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "secretapi1",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6IkQ5M0ZERTYxOTZEOUZCODc5MzdDQURERDUyNTczNDQ5IiwidHlwIjoiYXQrand0In0.eyJuYmYiOjE2ODk0Mjc0OTQsImV4cCI6MTY4OTQzMTA5NCwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzExMiIsImF1ZCI6InJlc291cmNlX2FwaTEiLCJjbGllbnRfaWQiOiJDbGllbnQxIiwianRpIjoiNEQ2QUJDQzNGQjI2NDI3QUNDMUQ1MEUwNEI5RThGRkYiLCJpYXQiOjE2ODk0Mjc0OTQsInNjb3BlIjpbImFwaTEucmVhZCJdfQ.S0rS_VleAygWOYg-Mzqasi9ZkOBw3tX7i36_LmTNKFjPfQ9CbEBcUBYKhm_NFia5Yvjd32Sf44GS0N7qn-5fImVKl74XP3UYCiEHtsIULafKW30zEUEdj1m1pD7_LbyN-YoVHYPzbm7YRbu1RlTRRnSfW9RolGBgzFYDb5-wwhObvGI-BvsYdLsokYPdQX2Zd6QXACQGpqm-Rtx4EgeeQFW91ARrJeZxLl-pmYgty3JGf5__5XHY89rGJAS7QsZc6VRi3KP8Q8auCZG7fX2XuJSR6r__RR5KgGZmwAKI1SBgH2btNsOvYrr64xEY0TJVR6frsfEwldlol87eHx2EjQ",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://localhost:7112/connect/introspect",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7112",
+					"path": [
+						"connect",
+						"introspect"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AuthServer : Introspection endpoint - Client1 token which is only for API 1 - API2",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "secretapi2",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "resource_api2",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6IkQ5M0ZERTYxOTZEOUZCODc5MzdDQURERDUyNTczNDQ5IiwidHlwIjoiYXQrand0In0.eyJuYmYiOjE2ODk0Mjc0OTQsImV4cCI6MTY4OTQzMTA5NCwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzExMiIsImF1ZCI6InJlc291cmNlX2FwaTEiLCJjbGllbnRfaWQiOiJDbGllbnQxIiwianRpIjoiNEQ2QUJDQzNGQjI2NDI3QUNDMUQ1MEUwNEI5RThGRkYiLCJpYXQiOjE2ODk0Mjc0OTQsInNjb3BlIjpbImFwaTEucmVhZCJdfQ.S0rS_VleAygWOYg-Mzqasi9ZkOBw3tX7i36_LmTNKFjPfQ9CbEBcUBYKhm_NFia5Yvjd32Sf44GS0N7qn-5fImVKl74XP3UYCiEHtsIULafKW30zEUEdj1m1pD7_LbyN-YoVHYPzbm7YRbu1RlTRRnSfW9RolGBgzFYDb5-wwhObvGI-BvsYdLsokYPdQX2Zd6QXACQGpqm-Rtx4EgeeQFW91ARrJeZxLl-pmYgty3JGf5__5XHY89rGJAS7QsZc6VRi3KP8Q8auCZG7fX2XuJSR6r__RR5KgGZmwAKI1SBgH2btNsOvYrr64xEY0TJVR6frsfEwldlol87eHx2EjQ",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://localhost:7112/connect/introspect",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7112",
+					"path": [
+						"connect",
+						"introspect"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AuthServer : Introspection endpoint - Client2 token which is for both APIS - API1",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "resource_api1",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "secretapi1",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6IkQ5M0ZERTYxOTZEOUZCODc5MzdDQURERDUyNTczNDQ5IiwidHlwIjoiYXQrand0In0.eyJuYmYiOjE2ODk0Mjc0NjcsImV4cCI6MTY4OTQzMTA2NywiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzExMiIsImF1ZCI6WyJyZXNvdXJjZV9hcGkxIiwicmVzb3VyY2VfYXBpMiJdLCJjbGllbnRfaWQiOiJDbGllbnQyIiwianRpIjoiRTQzRDA0RDgxQzkxNzQ4NzY1REJDQkZGQTY3MkEzODciLCJpYXQiOjE2ODk0Mjc0NjcsInNjb3BlIjpbImFwaTEucmVhZCIsImFwaTEudXBkYXRlIiwiYXBpMi51cGRhdGUiLCJhcGkyLndyaXRlIl19.OgjOeNUGDGQTu9ed9f2zbX_r_tWN9LCCiil8RFaot9Twf3nMV6Y8IgUYveovnsnQMYfxxehoNpERBCe8bshYFHmPRMjVL_BJVm5Q239P_JUnqLlp1814OfUblMJyYqMNVP0KVQTGLBD9grtAFX01C7fgfPAyTD9jBFcuUMJOubwrZGM7BAiPOStCLXjVC_ErJOUw7y7W1HYkC5fkOhXYkrQyHEvYY3gsSVNdtevp8qOFStCST940ZBo0_oLw8R31mJpNeyekz0XXCb_bLf978Vk-AFQgyqXNhnDQigYVKNp0DSCMTSf7S-JTPCYtbwIGfaNsDz8LumYohFxFfUcNvA",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://localhost:7112/connect/introspect",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7112",
+					"path": [
+						"connect",
+						"introspect"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AuthServer : Introspection endpoint - Client2 token which is for both APIS - API2",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "secretapi2",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "resource_api2",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6IkQ5M0ZERTYxOTZEOUZCODc5MzdDQURERDUyNTczNDQ5IiwidHlwIjoiYXQrand0In0.eyJuYmYiOjE2ODk0Mjc0NjcsImV4cCI6MTY4OTQzMTA2NywiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzExMiIsImF1ZCI6WyJyZXNvdXJjZV9hcGkxIiwicmVzb3VyY2VfYXBpMiJdLCJjbGllbnRfaWQiOiJDbGllbnQyIiwianRpIjoiRTQzRDA0RDgxQzkxNzQ4NzY1REJDQkZGQTY3MkEzODciLCJpYXQiOjE2ODk0Mjc0NjcsInNjb3BlIjpbImFwaTEucmVhZCIsImFwaTEudXBkYXRlIiwiYXBpMi51cGRhdGUiLCJhcGkyLndyaXRlIl19.OgjOeNUGDGQTu9ed9f2zbX_r_tWN9LCCiil8RFaot9Twf3nMV6Y8IgUYveovnsnQMYfxxehoNpERBCe8bshYFHmPRMjVL_BJVm5Q239P_JUnqLlp1814OfUblMJyYqMNVP0KVQTGLBD9grtAFX01C7fgfPAyTD9jBFcuUMJOubwrZGM7BAiPOStCLXjVC_ErJOUw7y7W1HYkC5fkOhXYkrQyHEvYY3gsSVNdtevp8qOFStCST940ZBo0_oLw8R31mJpNeyekz0XXCb_bLf978Vk-AFQgyqXNhnDQigYVKNp0DSCMTSf7S-JTPCYtbwIGfaNsDz8LumYohFxFfUcNvA",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://localhost:7112/connect/introspect",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7112",
+					"path": [
+						"connect",
+						"introspect"
 					]
 				}
 			},
