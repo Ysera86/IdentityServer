@@ -4,12 +4,26 @@ IdentityServer4 is an OpenID Connect and OAuth 2.0 framework for ASP.NET Core.
 identityserver4.readthedocs.io
 ------------------------------
 
+https://oauth.net/
+
+
+
 OAuth 2.0 Grants :
 ---------------------------------------
-1 - Authorization code grant
-2 - Implicit grant
-3 - Resource owner credentials grant
+1 - Authorization code grant :  login  >  Authorization code  flow 
+	Authorization Server'a 2 kere gidilir: 
+		1 - username & password girilir karþýlýðýmda AuthorizationCode alýnýr
+		2 - Alýnan AuthorizationCode ile yeniden Authorization Server'a  gidilir ve access token(w/ optional refresh token) alýnýr
+		-> Identity Server bunu kendisi yapar, biz username & password gireriz ve direk token alýrýz. 
+		-> Eðer OAuth2.0.Authorization code grant kendimiz kullanýrsak bu 2 aþamayý yapmalýyýz, Identity Server iþimii kolaylaþtýrýr burada.
+Backend ise cookie, frontend/mobil ise access token(w/ optional refresh token) 
+https://datatracker.ietf.org/doc/html/rfc6749#section-1.3.1
+2 - Implicit grant : 2 kere gidip gelinmez, 1 kere gidip kullancýý bilgileri girilir ve direk token alýnýr. mobil ve SPAlarda daha çok tercih edilen grant tipidir.
+https://datatracker.ietf.org/doc/html/rfc6749#section-1.3.2
+3 - Resource owner credentials grant* : En kullanýlan akýþ tipi. Auth Server da , clientlar da , apilerde hepsi bizimse, kullanýcý anlamadan (auth server loginine yönlendirmeden, ben arka planda authservera gidip kontrol ediyorsam). fb ile vs giriþ yap demiyorsam akýþ tipim bu.  username & passwordu deðil token bilgilerini tutarým. Aþýrý çok client varsa logini authserverda yaptýrmak mantýklý merkezi olarak ama mobil ve web sitem varsa öyle biþey yapmam, kendi clientlarýmda loginlerle hallederim.
+https://datatracker.ietf.org/doc/html/rfc6749#section-1.3.3
 4- Client credentials grant --> (Bu projede bunu yapýyoruz, bir tek bu grant tipinde refresh token kullanýlamaz : Üyelik sistemi yoksa)
+https://datatracker.ietf.org/doc/html/rfc6749#section-1.3.4
  
 ENDPOINTS : 
 ---------------------------------------
