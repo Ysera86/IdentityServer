@@ -1,5 +1,7 @@
 ﻿using IdentityModel.Client;
+using IdentityServer.Client1.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Text.Json;
 
 namespace IdentityServer.Client1.Controllers
 {
@@ -44,9 +46,13 @@ namespace IdentityServer.Client1.Controllers
 
             var response = await client.GetAsync("https://localhost:7007/api/Products/GetProducts");
 
+
+            List<Product> productList = null;
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();
+
+                productList = JsonSerializer.Deserialize<List<Product>>(content);
 
 
                 // https://localhost:7086 /> Client1 url
@@ -59,7 +65,7 @@ namespace IdentityServer.Client1.Controllers
             }
 
 
-            return View();
+            return View(productList);
         }
     }
 }

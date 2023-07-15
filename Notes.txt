@@ -5,13 +5,14 @@ identityserver4.readthedocs.io
 ------------------------------
 
 OAuth 2.0 Grants :
-Authorization code grant
-Implicit grant
-Resource owner credentials grant
-Client credentials grant --> (Bu projede bunu yapýyoruz, bir tek bu grant tipinde refresh token kullanýlamaz)
-
+---------------------------------------
+1 - Authorization code grant
+2 - Implicit grant
+3 - Resource owner credentials grant
+4- Client credentials grant --> (Bu projede bunu yapýyoruz, bir tek bu grant tipinde refresh token kullanýlamaz : Üyelik sistemi yoksa)
+ 
 ENDPOINTS : 
-------------------------------
+---------------------------------------
 1 - Discovery Endpoint : projede olan endpointler ve urlleri, scopeler vs : /.well-known/openid-configuration
 >>>> "jwks_uri": "https://localhost:7112/.well-known/openid-configuration/jwks"  sayesinde APIler publick key öðrenebiliyorlar (imza kontrolü sadece - doðru kiþi mi imzalamýþ yani, içerik doðrulama yok)
 authorize Endpoint :
@@ -24,7 +25,7 @@ authorize Endpoint :
 
 
 Yetkilendirme : 
-------------------------------
+---------------------------------------
 1 - Role based Authorization (adminiuser vs)
 2 - Claim based Authorization ( yaþý 18 ve üstü olanlar vs. örn. dataya göre yetkilendirme yapýlmak istenirse)
 
@@ -33,18 +34,14 @@ Yetkilendirme :
 
 
 CORS : Cross Origin Resource Sharing
-------------------------------
+---------------------------------------
 Sadece tarayýcýdan ajax ile istek yaparken ilgili tarayýcý tarafýndan alýnan bir güvenlik önlemidir.
 Tarayýcýdan API'ye bir ajax isteði yapýlacaksa o zaman APIlerde CORS özelliði açýlmalý : tarayýcý tarafýndan eklenen bu güvenlik duvarýný esnetmek için CORS eklenir
 CORS açmak güvenlik eklemek deðil, tarayýcý tarafýndan eklenen güvenliði esnetmek içindir : güvenilir kaynaktýr bu , buradan gelen istekleri al, reddetme demek içindir.
 
-Eklemiyoruz çnk tarayýcýdan eriþmiyoruz burada APIlere.
+Þuan eklemiyoruz çnk tarayýcýdan eriþmiyoruz burada APIlere. FE tarafýndan mesela Angular ile istek yapýnca CORS gerekecek. Þimdilik server-side sorguladýðýmýzdan gerekmiyor.
 
 
 HttpClient : Client taraftan api isteði yapmak için HttpClient sýnýfýný kullanýcaz, get post put delete vs isteklerini yapmak için
 IdentityModel (package) : istek gerçekleþtirince token yollamak gerekli, http header eklemek için. - normalde HttpClienta manuel eklemek gerek. Ama paketle HttpClient sýnýfýna yardýmcý methodlar geliyor. kolayca token alýp verebiliyoruz.HttpClient extension methodlarý var yani.
-
-
-
-
 
