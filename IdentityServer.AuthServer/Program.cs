@@ -11,6 +11,9 @@ builder.Services.AddIdentityServer()
     .AddInMemoryApiResources(Config.GetApiResources())
     .AddInMemoryApiScopes(Config.GetApiScopes())
     .AddInMemoryClients(Config.GetClients())
+
+    .AddInMemoryIdentityResources(Config.GetIdentityResources())    
+    .AddTestUsers(Config.GetTestUsers().ToList())
     
     //.AddSigningCredential() // proda çýkarken aç
     .AddDeveloperSigningCredential(); // proda çýkarken kapat  => projeye eklendi :  tempkey.jwk

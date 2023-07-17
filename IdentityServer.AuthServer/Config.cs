@@ -1,4 +1,6 @@
 ﻿using IdentityServer4.Models;
+using IdentityServer4.Test;
+using System.Security.Claims;
 
 namespace IdentityServer.AuthServer
 {
@@ -10,12 +12,12 @@ namespace IdentityServer.AuthServer
             {
                 // Intrspection endpoint  Basic Auth alıyor ya, onun username ve passwordu bunlar
                 new ApiResource("resource_api1") //username
-                { 
+                {
                     Scopes = { "api1.read", "api1.write", "api1.update" },
                     ApiSecrets = new[]{new Secret("secretapi1".Sha256())} // password 
                 },
                 new ApiResource("resource_api2")
-                { 
+                {
                     Scopes = { "api2.read", "api2.write", "api2.update" } ,
                     ApiSecrets = new[]{new Secret("secretapi2".Sha256())}
                 },
@@ -42,25 +44,88 @@ namespace IdentityServer.AuthServer
             return new List<Client>
             {
                 new Client()
-                { 
-                    ClientId="Client1", 
-                    ClientName= "Client 1 web app", 
+                {
+                    ClientId="Client1",
+                    ClientName= "Client 1 web app",
                     ClientSecrets= new []{ new Secret("secret".Sha256())},
-                    AllowedGrantTypes= GrantTypes.ClientCredentials, 
-                    AllowedScopes = { "api1.read" } 
+                    AllowedGrantTypes= GrantTypes.ClientCredentials,
+                    AllowedScopes = { "api1.read" }
                 },
 
                  new Client()
-                 { 
-                     ClientId="Client2", 
-                     ClientName= "Client 2 web app", 
+                 {
+                     ClientId="Client2",
+                     ClientName= "Client 2 web app",
                      ClientSecrets= new []{ new Secret("secret".Sha256())},
-                     AllowedGrantTypes= GrantTypes.ClientCredentials, 
-                     AllowedScopes = { "api1.read", "api1.update", "api2.write", "api2.update" } 
+                     AllowedGrantTypes= GrantTypes.ClientCredentials,
+                     AllowedScopes = { "api1.read", "api1.update", "api2.write", "api2.update" }
                  },
             };
         }
 
         // GrantTypes.ClientCredentials : uluşturulan tokenda kullanıcı ile ilgili bilgiler olmicak, tamamen clientın API ye bağlanması ile ilgili izinler olcak.
+
+        #region Kullanıcılar ve tokenda kullanıcıya ait yer alacak bilgiler
+
+        /// <summary>
+        /// tokendan geriye illa ki kullanıcı Id (subject Id: subId) dönmesi gerekli
+        /// </summary>
+        /// <returns></returns>
+        public static IEnumerable<IdentityResource> GetIdentityResources()
+        {
+            return new List<IdentityResource>
+            {
+                new IdentityResources.OpenId(), // == subId kullanıcı ID
+                new IdentityResources.Profile() // userın claimleri (https://developer.okta.com/blog/2017/07/25/oidc-primer-part-1)
+                #region IdentityResources.Profile()
+                /*
+                    The default profile claims are:
+
+                    name
+                    family_name
+                    given_name
+                    middle_name
+                    nickname
+                    preferred_username
+                    profile
+                    picture
+                    website
+                    gender
+                    birthdate
+                    zoneinfo
+                    locale
+                    updated_at
+                 
+                    */
+
+	                #endregion
+            };
+        }
+
+        public static IEnumerable<TestUser> GetTestUsers()
+        {
+            return new List<TestUser>
+            {
+                new TestUser
+                {
+                    SubjectId="1", Username="ysera", Password="password",
+                    Claims=new List<Claim>
+                    {
+                        new Claim("given_name","Merve"),
+                        new Claim("family_name","Uğursaç"),
+                    }
+                },
+                new TestUser
+                {
+                    SubjectId="2", Username="simurg", Password="password",
+                    Claims=new List<Claim>
+                    {
+                        new Claim("given_name","Taylan"),
+                        new Claim("family_name","Altun"),
+                    }
+                }
+            };
+        } 
+        #endregion
     }
 }
