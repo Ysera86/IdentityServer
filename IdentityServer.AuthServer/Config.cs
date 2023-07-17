@@ -1,4 +1,5 @@
-﻿using IdentityServer4.Models;
+﻿using IdentityServer4;
+using IdentityServer4.Models;
 using IdentityServer4.Test;
 using System.Security.Claims;
 
@@ -43,6 +44,8 @@ namespace IdentityServer.AuthServer
         {
             return new List<Client>
             {
+                #region Client Credential
+		        
                 new Client()
                 {
                     ClientId="Client1",
@@ -51,15 +54,30 @@ namespace IdentityServer.AuthServer
                     AllowedGrantTypes= GrantTypes.ClientCredentials,
                     AllowedScopes = { "api1.read" }
                 },
+                new Client()
+                {
+                    ClientId="Client2",
+                    ClientName= "Client 2 web app",
+                    ClientSecrets= new []{ new Secret("secret".Sha256())},
+                    AllowedGrantTypes= GrantTypes.ClientCredentials,
+                    AllowedScopes = { "api1.read", "api1.update", "api2.write", "api2.update" }
+                },
 
-                 new Client()
-                 {
-                     ClientId="Client2",
-                     ClientName= "Client 2 web app",
-                     ClientSecrets= new []{ new Secret("secret".Sha256())},
-                     AllowedGrantTypes= GrantTypes.ClientCredentials,
-                     AllowedScopes = { "api1.read", "api1.update", "api2.write", "api2.update" }
-                 },
+                #endregion
+
+                #region Üyelik sistemi var :  IdentityResources olmalı bu nednele
+                // Client 1 : https://localhost:7086
+                new Client()
+                {
+                    ClientId="Client1-Mvc",
+                    ClientName= "Client 1 app Mvc application",
+                    ClientSecrets= new []{ new Secret("secret".Sha256())},
+                    AllowedGrantTypes= GrantTypes.Hybrid,
+                    RedirectUris = new List<string>{ "https://localhost:7086/sign-oidc" }, // token alma işlemini gerçekleştiren url : Authorize Endpoint bu urle dönüş yapar otomatik, OpenIdConnect paketi kullandığımız için   bu URL otomatik oluşur
+                    AllowedScopes = { IdentityServerConstants.StandardScopes.OpenId, IdentityServerConstants.StandardScopes.Profile/*, "api1.read"*/ }
+                }, 
+	            #endregion
+
             };
         }
 
@@ -125,7 +143,7 @@ namespace IdentityServer.AuthServer
                     }
                 }
             };
-        } 
+        }
         #endregion
     }
 }

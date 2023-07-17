@@ -13,14 +13,14 @@ https://oauth.net/
 		2 - Token Endpoint : Bakend channel
 
 >>>>>> 
-Return Type ( dönüþ tiplerini clientta belirtip bunlar gelsin diyebiliyorum : hibrit akýþ, doðrulamak için istersem)
+Return Type ( dönüþ tiplerini clientta belirtip bunlar gelsin diyebiliyorum : hibrit akýþ, doðrulamak için istersem) GrantTypes.Hybrid
 code token (code : accesstoken)
 code id_token > (server için en uygunu) (id_token : imzalý jwt token , içinde sadece kullanýcýId var, amacý : doðru yerden mi kontrolü için public key ile kontrol)
 code id_token token (token direk jwt token)
 
 OAuth 2.0 Grants :
 ---------------------------------------
-1 - Authorization code grant :  login  >  Authorization code  flow 
+1 - Authorization code grant :  login  >  Authorization code  flow     (GrantTypes.Code)
 	Authorization Server'a 2 kere gidilir: 
 		1 - Authorize Endpoint : username & password girilir karþýlýðýnda AuthorizationCode alýnýr
 		2 - Token Endpoint : Alýnan AuthorizationCode ile yeniden Authorization Server'a  gidilir ve access token(w/ optional refresh token) alýnýr
