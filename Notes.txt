@@ -77,3 +77,16 @@ Antiforgery : formdan istek yapýnca httppost methodlarýna bizim tarafýmýzdan mý 
 Merkezi Login UI (IdentityServer Quickstart UI) : https://github.com/IdentityServer/IdentityServer4.Quickstart.UI
 
 Clientlarda OpenIDConnect paketi indiriyorum : token gelmesi için (OpenID Connect (Authentication) and OAuth 2.0 (token daðýtma)), client token daðýtmayacaðýna göre OAuth gerekmiyor.
+
+
+
+
+
+PKCE (Proof Key for Code Exchange) 
+https://auth0.com/docs/get-started/authentication-and-authorization-flow/authorization-code-flow-with-proof-key-for-code-exchange-pkce
+---------------------------------------
+Secret nerede tutulmalý ?  sertverda kodda tutmayýz da SPA ve ya mobiede (nativede) nerede tutarsýn?
+clientlarda OpenIdCOnnect paketleri bunu otomatik yaparlar.
+
+merkezi üyelik sistemi kullanýyosak (hepsinin yönetimi bizdeyse client,Identity vs:  Resource Owner credentials Grant Type):  PKCE kullanmalý.
+clientta kendi loginim var ise arkada username & password gönderilir buna gerek kalmaz.

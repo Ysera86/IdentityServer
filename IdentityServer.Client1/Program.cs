@@ -3,7 +3,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-//..
+//.. Bu kýsmý ekleyerek merkezi bir üyelik sistemine çevirmiþ olduk
 // üyelik sistemlerini (cookie mekanizmalarýný ayýrmak için þemalar kullanýlýr, ör. bayii ve kullanýcý için mesela. Ayrý þemalar gerekecekti.
 
 builder.Services.AddAuthentication(options =>
@@ -36,8 +36,14 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+//..
 
+app.UseAuthentication();
+
+//..
 app.UseAuthorization();
+
+
 
 app.MapControllerRoute(
     name: "default",

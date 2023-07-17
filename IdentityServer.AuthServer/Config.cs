@@ -71,9 +71,10 @@ namespace IdentityServer.AuthServer
                 {
                     ClientId="Client1-Mvc",
                     ClientName= "Client 1 app Mvc application",
+                    RequirePkce= false, // serverside uygulama
                     ClientSecrets= new []{ new Secret("secret".Sha256())},
                     AllowedGrantTypes= GrantTypes.Hybrid,
-                    RedirectUris = new List<string>{ "https://localhost:7086/sign-oidc" }, // token alma işlemini gerçekleştiren url : Authorize Endpoint bu urle dönüş yapar otomatik, OpenIdConnect paketi kullandığımız için   bu URL otomatik oluşur
+                    RedirectUris = new List<string>{ "https://localhost:7086/signin-oidc" }, // token alma işlemini gerçekleştiren url : Authorize Endpoint bu urle dönüş yapar otomatik, OpenIdConnect paketi kullandığımız için   bu URL otomatik oluşur
                     AllowedScopes = { IdentityServerConstants.StandardScopes.OpenId, IdentityServerConstants.StandardScopes.Profile/*, "api1.read"*/ }
                 }, 
 	            #endregion
