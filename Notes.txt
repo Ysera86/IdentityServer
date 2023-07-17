@@ -1,4 +1,4 @@
-IdentityServer4 is an OpenID Connect and OAuth 2.0 framework for ASP.NET Core.
+IdentityServer4 is an OpenID Connect (Authentication) and OAuth 2.0 (token daðýtma) framework for ASP.NET Core.
 ( https://duendesoftware.com/  olmuþ)
 
 identityserver4.readthedocs.io
@@ -8,21 +8,34 @@ https://oauth.net/
 
 
 
+>>>>>> 
+		1 - Authorize Endpoint : Front channel
+		2 - Token Endpoint : Bakend channel
+
+>>>>>> 
+Return Type ( dönüþ tiplerini clientta belirtip bunlar gelsin diyebiliyorum : hibrit akýþ, doðrulamak için istersem)
+code token (code : accesstoken)
+code id_token > (server için en uygunu) (id_token : imzalý jwt token , içinde sadece kullanýcýId var, amacý : doðru yerden mi kontrolü için public key ile kontrol)
+code id_token token (token direk jwt token)
+
 OAuth 2.0 Grants :
 ---------------------------------------
 1 - Authorization code grant :  login  >  Authorization code  flow 
 	Authorization Server'a 2 kere gidilir: 
-		1 - username & password girilir karþýlýðýmda AuthorizationCode alýnýr
-		2 - Alýnan AuthorizationCode ile yeniden Authorization Server'a  gidilir ve access token(w/ optional refresh token) alýnýr
+		1 - Authorize Endpoint : username & password girilir karþýlýðýnda AuthorizationCode alýnýr
+		2 - Token Endpoint : Alýnan AuthorizationCode ile yeniden Authorization Server'a  gidilir ve access token(w/ optional refresh token) alýnýr
 		-> Identity Server bunu kendisi yapar, biz username & password gireriz ve direk token alýrýz. 
 		-> Eðer OAuth2.0.Authorization code grant kendimiz kullanýrsak bu 2 aþamayý yapmalýyýz, Identity Server iþimii kolaylaþtýrýr burada.
 Backend ise cookie, frontend/mobil ise access token(w/ optional refresh token) 
 https://datatracker.ietf.org/doc/html/rfc6749#section-1.3.1
 2 - Implicit grant : 2 kere gidip gelinmez, 1 kere gidip kullancýý bilgileri girilir ve direk token alýnýr. mobil ve SPAlarda daha çok tercih edilen grant tipidir.
+		1 -  Authorize Endpoint : direk 1 gidiþte token alýnýr.
 https://datatracker.ietf.org/doc/html/rfc6749#section-1.3.2
 3 - Resource owner credentials grant* (=password): En kullanýlan akýþ tipi. Auth Server da , clientlar da , apilerde hepsi bizimse, kullanýcý anlamadan (auth server loginine yönlendirmeden, ben arka planda authservera gidip kontrol ediyorsam). fb ile vs giriþ yap demiyorsam akýþ tipim bu.  username & passwordu deðil token bilgilerini tutarým. Aþýrý çok client varsa logini authserverda yaptýrmak mantýklý merkezi olarak ama mobil ve web sitem varsa öyle biþey yapmam, kendi clientlarýmda loginlerle hallederim.
+		1 - Token Endpoint : IdentityServer da client da güvenilirse (benimse), direk token alýyorum.
 https://datatracker.ietf.org/doc/html/rfc6749#section-1.3.3
 4- Client credentials grant --> (Bu projede bunu yapýyoruz, bir tek bu grant tipinde refresh token kullanýlamaz : Üyelik sistemi yoksa)
+		1 - Token Endpoint : üyelik sistemsiz, API'dan direl data almak için direk token alýyor.
 https://datatracker.ietf.org/doc/html/rfc6749#section-1.3.4
  
 ENDPOINTS : 
@@ -62,3 +75,5 @@ IdentityModel (package) : istek gerçekleþtirince token yollamak gerekli, http he
 Antiforgery : formdan istek yapýnca httppost methodlarýna bizim tarafýmýzdan mý geldi kontrolü yapýyor. Token kontrolü : backend ve frontend tokený ayný mý ? 
 
 Merkezi Login UI (IdentityServer Quickstart UI) : https://github.com/IdentityServer/IdentityServer4.Quickstart.UI
+
+Clientlarda OpenIDConnect paketi indiriyorum : token gelmesi için (OpenID Connect (Authentication) and OAuth 2.0 (token daðýtma)), client token daðýtmayacaðýna göre OAuth gerekmiyor.
