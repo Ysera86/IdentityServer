@@ -121,6 +121,12 @@ namespace IdentityServer.AuthServer
             };
         }
 
+
+        /// <summary>
+        /// User Index viewında User.Claims ile bu claimleri direk göremedik çünkü
+        /// Cookie şişmemesi için IdentityServer bu bilgileri otomatik olarak cookie içine eklemez. UserInfo Endpoint ile bu bilgileri görebiliriz.
+        /// </summary>
+        /// <returns></returns>
         public static IEnumerable<TestUser> GetTestUsers()
         {
             return new List<TestUser>
