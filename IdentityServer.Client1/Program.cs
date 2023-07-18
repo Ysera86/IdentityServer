@@ -23,7 +23,10 @@ builder.Services.AddAuthentication(options =>
     opts.SaveTokens = true; // baþarýlý bir authorizationdan snr access ve refresh tokenlarý AuthenticationProperties içine kaydetmesini saðlar. Varsayýlan olarak cookie þiþmesin diye kaydolmazlar
 
     opts.Scope.Add("api1.read"); // IdentityServer (AuthServer) Clientýnda (Config. Client1-Mvc) claimlerinde "api1.read varsa, bu satýr sayesinde eriþebilir artýk client API1'e read izniyle
-    //opts.Scope.Add("api1.write"); // mesla bu ekli deðil buna izin vermeyecek hata verir eklersem buraya
+     //opts.Scope.Add("api1.write"); // mesla bu ekli deðil buna izin vermeyecek hata verir eklersem buraya
+
+    opts.Scope.Add("offline_access"); // Config. Client1-Mvc için refresh token eklendi scope da eklendi, buraya da eklendi.
+
 });
 
 //..
