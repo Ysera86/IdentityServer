@@ -17,6 +17,8 @@ builder.Services.AddAuthentication(options =>
     opts.ClientId = "Client1-Mvc";
     opts.ClientSecret = "secret";
     opts.ResponseType = "code id_token"; // Notes.Return Type
+
+    opts.GetClaimsFromUserInfoEndpoint = true; //kullanıcılara verdiğimiz ek Claimleri IdentityServer direk Coolie içine eklemez şişirmemek için (UserInfoEndpointinden erişebiliriz) ya da bu şekilde IdentityServer'ın direk bu bilgileri alıp Claims içinde getirmesini sağlayabiliriz. > User.Claims içine ekler
 });
 
 //..

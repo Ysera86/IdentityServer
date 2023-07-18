@@ -44,7 +44,7 @@ ENDPOINTS :
 >>>> "jwks_uri": "https://localhost:7112/.well-known/openid-configuration/jwks"  sayesinde APIler publick key öðrenebiliyorlar (imza kontrolü sadece - doðru kiþi mi imzalamýþ yani, içerik doðrulama yok)
 authorize Endpoint :
 2 - Token Endpoint : token almak için : /connect/token
-3 - UserInfo Endpoint :
+3 - UserInfo Endpoint : Kullanýcý hakkýnda Identity bilgilerini görmek için kullanýlýr, Config içinde Claimler ekledik kullanýcýnýn adý vs gibi "ek bilgiler", IdentityServer cookienin þiþmemesi için otomatik olarak User.Claims içinde bu bilgileri göstermedi, bu bilgilere iþte bu endpoint ile eriþebiliriz. Kullanýcnýn Bearer Tokený ile eriþilir. => bunu otomatik olarak yapmak için Client1.Program içinde AddOpenIdConnect içinde opts.GetClaimsFromUserInfoEndpoint =true ile IdentityServer'ýn direk bu bilgileri alýp Claims içinde getirmesini saðlayabiliriz. 
 4 - Device authorization Endpoint :   tv gibi clientlar için data girmek zor olan
 5 - Introspection Endpoint: eðer tokený parse edemiyorsan (içeriðini görebilecek bir libraryn yoksa) bana tokený yolla sana içeriðin, json olarak yollayayým diyor. -> Ýlgili tokenýn ilgili API için yetkisi var mý?
 6 - Revocation Endpoint : tokený geçersiz kýlmak için (örn refresh token çalýnsa onunla yeni bir acces token almamasý içn o refresh tokený revoke ederiz)
