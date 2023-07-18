@@ -19,6 +19,8 @@ builder.Services.AddAuthentication(options =>
     opts.ResponseType = "code id_token"; // Notes.Return Type
 
     opts.GetClaimsFromUserInfoEndpoint = true; //kullanýcýlara verdiðimiz ek Claimleri IdentityServer direk Coolie içine eklemez þiþirmemek için (UserInfoEndpointinden eriþebiliriz) ya da bu þekilde IdentityServer'ýn direk bu bilgileri alýp Claims içinde getirmesini saðlayabiliriz. > User.Claims içine ekler
+
+    opts.SaveTokens = true; // baþarýlý bir authorizationdan snr access ve refresh tokenlarý AuthenticationProperties içine kaydetmesini saðlar. Varsayýlan olarak cookie þiþmesin diye kaydolmazlar
 });
 
 //..
