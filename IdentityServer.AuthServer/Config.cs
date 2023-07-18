@@ -75,7 +75,7 @@ namespace IdentityServer.AuthServer
                     ClientSecrets= new []{ new Secret("secret".Sha256())},
                     AllowedGrantTypes= GrantTypes.Hybrid,
                     RedirectUris = new List<string>{ "https://localhost:7086/signin-oidc" }, // token alma işlemini gerçekleştiren url : Authorize Endpoint bu urle dönüş yapar otomatik, OpenIdConnect paketi kullandığımız için   bu URL otomatik oluşur
-                    AllowedScopes = { IdentityServerConstants.StandardScopes.OpenId, IdentityServerConstants.StandardScopes.Profile/*, "api1.read"*/ }
+                    AllowedScopes = { IdentityServerConstants.StandardScopes.OpenId, IdentityServerConstants.StandardScopes.Profile, "api1.read" }
                 }, 
 	            #endregion
 

@@ -21,6 +21,9 @@ builder.Services.AddAuthentication(options =>
     opts.GetClaimsFromUserInfoEndpoint = true; //kullanýcýlara verdiðimiz ek Claimleri IdentityServer direk Coolie içine eklemez þiþirmemek için (UserInfoEndpointinden eriþebiliriz) ya da bu þekilde IdentityServer'ýn direk bu bilgileri alýp Claims içinde getirmesini saðlayabiliriz. > User.Claims içine ekler
 
     opts.SaveTokens = true; // baþarýlý bir authorizationdan snr access ve refresh tokenlarý AuthenticationProperties içine kaydetmesini saðlar. Varsayýlan olarak cookie þiþmesin diye kaydolmazlar
+
+    opts.Scope.Add("api1.read"); // IdentityServer (AuthServer) Clientýnda (Config. Client1-Mvc) claimlerinde "api1.read varsa, bu satýr sayesinde eriþebilir artýk client API1'e read izniyle
+    //opts.Scope.Add("api1.write"); // mesla bu ekli deðil buna izin vermeyecek hata verir eklersem buraya
 });
 
 //..
