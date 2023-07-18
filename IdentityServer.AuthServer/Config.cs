@@ -83,7 +83,8 @@ namespace IdentityServer.AuthServer
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
                         "api1.read" ,
-                        IdentityServerConstants.StandardScopes.OfflineAccess
+                        IdentityServerConstants.StandardScopes.OfflineAccess,
+                        "CountryAndCity"
                     },
 
                     AccessTokenLifetime = 2*60*60, // 2 hours
@@ -114,7 +115,22 @@ namespace IdentityServer.AuthServer
             return new List<IdentityResource>
             {
                 new IdentityResources.OpenId(), // == subId kullanıcı ID
-                new IdentityResources.Profile() // userın claimleri (https://developer.okta.com/blog/2017/07/25/oidc-primer-part-1)
+                new IdentityResources.Profile(), // userın claimleri (https://developer.okta.com/blog/2017/07/25/oidc-primer-part-1)
+
+                new IdentityResource()
+                {
+                    Name ="CountryAndCity", 
+                    DisplayName= "Country and City", 
+                    Description="Kullanıcının Ülke ve Şehir Bilgisi", 
+                    UserClaims=new[]
+                    {
+                        "country",
+                        "city"
+                    } 
+                }
+
+
+
                 #region IdentityResources.Profile()
                 /*
                     The default profile claims are:
@@ -157,6 +173,8 @@ namespace IdentityServer.AuthServer
                     {
                         new Claim("given_name","Merve"),
                         new Claim("family_name","Uğursaç"),
+                        new Claim("country","Türkiye"),
+                        new Claim("city","İstanbul"),
                     }
                 },
                 new TestUser
@@ -166,6 +184,8 @@ namespace IdentityServer.AuthServer
                     {
                         new Claim("given_name","Taylan"),
                         new Claim("family_name","Altun"),
+                        new Claim("country","Türkiye"),
+                        new Claim("city","İstanbul"),
                     }
                 }
             };

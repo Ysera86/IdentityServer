@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Authentication;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -26,6 +28,10 @@ builder.Services.AddAuthentication(options =>
      //opts.Scope.Add("api1.write"); // mesla bu ekli deðil buna izin vermeyecek hata verir eklersem buraya
 
     opts.Scope.Add("offline_access"); // Config. Client1-Mvc için refresh token eklendi scope da eklendi, buraya da eklendi.
+
+    opts.Scope.Add("CountryAndCity");  // scope eklemek yetmez burada talep ettim. custom claim olduklarý için de maplemem lazým
+    opts.ClaimActions.MapUniqueJsonKey("country", "country");
+    opts.ClaimActions.MapUniqueJsonKey("city", "city");
 
 });
 
