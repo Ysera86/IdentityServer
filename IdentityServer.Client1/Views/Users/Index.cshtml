@@ -6,6 +6,9 @@
 
 <a class="btn btn-primary" asp-action="LogOut">Çıkış Yap</a>
 
+<a class="btn btn-success" asp-action="GetRefreshToken">Refresh token yenile</a>  
+@*AccessToken ile 401 alıyor olsaydık, kullanıcıya hissettirmeden arkada refreshtoken alıp cookie güncellerdik, SPA olsaydı localstorageda tutuardık*@
+
 <h3> Bu sayfayı sadece üye olan kullanıcılar görebilir. </h3>
 
 <h4>Claim Verileri</h4>
