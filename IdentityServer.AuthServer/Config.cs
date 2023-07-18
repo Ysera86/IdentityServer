@@ -91,7 +91,9 @@ namespace IdentityServer.AuthServer
                     AllowOfflineAccess = true, // Refresh token!, bunu ekleyince scope da eklemek gerekli hem buraya hem de client tarafına :IdentityServerConstants.StandardScopes.OfflineAccess
                     RefreshTokenUsage = TokenUsage.ReUse,
                     RefreshTokenExpiration = TokenExpiration.Absolute,
-                    AbsoluteRefreshTokenLifetime = (int)(DateTime.Now.AddDays(60) - DateTime.Now).TotalSeconds
+                    AbsoluteRefreshTokenLifetime = (int)(DateTime.Now.AddDays(60) - DateTime.Now).TotalSeconds,
+
+                    RequireConsent = true, // Client1-Mvc ile login olunca yetkiler tikli şekilde onay/rıza sayfası açılır. tikli olanlar cookie içine eklenir. Yalnız refreshtoken ( Offline Access) aldğımız için bu seimler memoryde kaydedilmez,  her girişte onay sayfası açılır. Offline Access Client tarafından ( opts.Scope.Add("offline_access");) kapatılırsa o zaman seçenkler memorye kaydedilir ve her loginde bir daha sormaz - Remember My Decision tikliyse.
 
                 }, 
 	            #endregion
