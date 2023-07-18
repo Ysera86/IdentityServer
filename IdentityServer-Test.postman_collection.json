@@ -47,6 +47,61 @@
 			"response": []
 		},
 		{
+			"name": "AuthServer : Client1-Mvc token",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "client_id",
+							"value": "Client1-Mvc",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "secret",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "refresh_token",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "ysera",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "refresh_token",
+							"value": "5C61A5AF0AD6ED50A81E402218F0D896CC7E626C636576856CDC9731BC7CCA18",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://localhost:7112/connect/token",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7112",
+					"path": [
+						"connect",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "AuthServer : Client2 token",
 			"request": {
 				"method": "POST",
@@ -390,7 +445,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6IkQ5M0ZERTYxOTZEOUZCODc5MzdDQURERDUyNTczNDQ5IiwidHlwIjoiYXQrand0In0.eyJuYmYiOjE2ODk0MjU4MTksImV4cCI6MTY4OTQyOTQxOSwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzExMiIsImF1ZCI6WyJyZXNvdXJjZV9hcGkxIiwicmVzb3VyY2VfYXBpMiJdLCJjbGllbnRfaWQiOiJDbGllbnQyIiwianRpIjoiNDdEODEzQTg3MTdENzdGMzlEOEVDRjkyQkVGOEJDNDIiLCJpYXQiOjE2ODk0MjU4MTksInNjb3BlIjpbImFwaTEucmVhZCIsImFwaTEudXBkYXRlIiwiYXBpMi51cGRhdGUiLCJhcGkyLndyaXRlIl19.YBxCzLKWtWl8m0FxYVWBD_Om-wmZLGf34UmPRE0ar8-sVoowxZzHLZA2fozdY6IUtbgl07eO28LY82KBDg1Jy_AqVtpUpdPLe_sZQD3uxlVGUWAQ5AXBHYsd_W4H4CS64trfSF0CdKgPWaClvY_KLDDwcw9ene5_HaMjTTH1ks9huCOYvx4In1VQ7i9CgBLBJ71aVOD_spvAiEZfzuuuSFWcUCAE4iIHqxO2C5VUvf6XTOSgU-OAhX9tyboKqVfGzHC7hTojeCFWlf09Qz-pXvANj5gxfUSYgW-r5QgmjpH51x2VW1oqGPooiDu-5-lgfyZvfT1he-GoaER4mbHEtg",
+							"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6IkQ5M0ZERTYxOTZEOUZCODc5MzdDQURERDUyNTczNDQ5IiwidHlwIjoiYXQrand0In0.eyJuYmYiOjE2ODk3MDIyODUsImV4cCI6MTY4OTcwNTg4NSwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzExMiIsImF1ZCI6InJlc291cmNlX2FwaTEiLCJjbGllbnRfaWQiOiJDbGllbnQxLU12YyIsInN1YiI6IjEiLCJhdXRoX3RpbWUiOjE2ODk3MDIyODQsImlkcCI6ImxvY2FsIiwianRpIjoiNTgzMDE1NzFFNEUxRTM0MDkwMzExMEVFRjMwQkVGMjgiLCJzaWQiOiIzQTg5QjA1MjJBNENDREM2RjhCMzRGQzUxNzUzQUJFMSIsImlhdCI6MTY4OTcwMjI4NSwic2NvcGUiOlsib3BlbmlkIiwicHJvZmlsZSIsImFwaTEucmVhZCJdLCJhbXIiOlsicHdkIl19.aBkPFx_Hv-9p8UgkOiptrmsIk8F7m89-7tSXfwtvxZyjfAllkohguh1isuP2xafgakYTmFIOpMw8xZkSubxM0FN3TYVCp86woIFP8wVbluMuv9JYuEivsucUIBHmnS6DUCZnoGEptgBwl4nmVWUvWfBCfsFLasIePN5UOBtRROorP28lXEYdXfWFiQiY59002qdILFPLk8kRJ5ESD3165TTDAr5LZtNMZrx5nlEj3ClXlXe3Z0aXL_XZ8MoaIDiFht0ZOLOHMqsnVokTXBrvDxmY88h4ZHRhmVrzrgs5AFvdqCiZjPmnMBdJdWZHOgY1ZP5lTs-kLV2xDRjEjkYW3A",
 							"type": "string"
 						}
 					]
