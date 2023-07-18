@@ -75,6 +75,9 @@ namespace IdentityServer.AuthServer
                     ClientSecrets= new []{ new Secret("secret".Sha256())},
                     AllowedGrantTypes= GrantTypes.Hybrid,
                     RedirectUris = new List<string>{ "https://localhost:7086/signin-oidc" }, // token alma işlemini gerçekleştiren url : Authorize Endpoint bu urle dönüş yapar otomatik, OpenIdConnect paketi kullandığımız için   bu URL otomatik oluşur
+
+                    PostLogoutRedirectUris=new List<string>{"https://localhost:7086/signout-callback-oidc"}, // signout olunca nereye yönlendirilecek kullanıcı?  2 tarafta da yapılması gereken logout sonrası açılacak sayfa openId protokolünün sayfaları, openId kütüphanesi ile bu url otomatik oluşuyor
+
                     AllowedScopes =
                     {
                         IdentityServerConstants.StandardScopes.OpenId,
