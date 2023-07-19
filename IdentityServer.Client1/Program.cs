@@ -12,7 +12,10 @@ builder.Services.AddAuthentication(options =>
 {
     options.DefaultScheme = "mySiteCookies";  // Aþaðýdakilerle eþleþmeli
     options.DefaultChallengeScheme = "oidc"; // Aþaðýdakilerle eþleþmeli // open Id connect
-}).AddCookie("mySiteCookies").AddOpenIdConnect("oidc", opts =>
+}).AddCookie("mySiteCookies",opts =>
+{
+    opts.AccessDeniedPath = "/Home/AccessDenied"; // herkesin eriþebileceði bir yerde yapýlýr. home , user vs
+}).AddOpenIdConnect("oidc", opts =>
 {
     opts.SignInScheme = "mySiteCookies";
     opts.Authority = "https://localhost:7112"; // Auth Server yetkili
