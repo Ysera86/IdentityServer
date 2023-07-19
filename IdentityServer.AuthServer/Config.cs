@@ -84,7 +84,9 @@ namespace IdentityServer.AuthServer
                         IdentityServerConstants.StandardScopes.Profile,
                         "api1.read" ,
                         IdentityServerConstants.StandardScopes.OfflineAccess,
-                        "CountryAndCity"
+                        "CountryAndCity",
+                        
+                        "Roles"
                     },
 
                     AccessTokenLifetime = 2*60*60, // 2 hours
@@ -127,7 +129,20 @@ namespace IdentityServer.AuthServer
                         "country",
                         "city"
                     } 
+                },
+
+                #region Role based
+               new IdentityResource()
+                {
+                    Name ="Roles", 
+                    DisplayName= "Roles", 
+                    Description="Kullanıcı Rolleri", 
+                    UserClaims=new[]
+                    {
+                        "role"
+                    } 
                 }
+	            #endregion
 
 
 
@@ -175,6 +190,8 @@ namespace IdentityServer.AuthServer
                         new Claim("family_name","Uğursaç"),
                         new Claim("country","Türkiye"),
                         new Claim("city","İstanbul"),
+
+                        new Claim("role","admin")
                     }
                 },
                 new TestUser
@@ -186,6 +203,8 @@ namespace IdentityServer.AuthServer
                         new Claim("family_name","Altun"),
                         new Claim("country","Türkiye"),
                         new Claim("city","İstanbul"),
+
+                        new Claim("role","customer")
                     }
                 }
             };

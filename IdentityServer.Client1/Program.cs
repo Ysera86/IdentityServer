@@ -33,6 +33,14 @@ builder.Services.AddAuthentication(options =>
     opts.ClaimActions.MapUniqueJsonKey("country", "country");
     opts.ClaimActions.MapUniqueJsonKey("city", "city");
 
+    opts.Scope.Add("Roles");
+    opts.ClaimActions.MapUniqueJsonKey("role", "role"); // gelen "role" ü json içindeki "role"den al
+    opts.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+    {
+        RoleClaimType = "role", //[Authorize] görünce role olan alana bakacak artýk
+
+    };
+
 });
 
 //..
