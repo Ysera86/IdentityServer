@@ -99,6 +99,48 @@ namespace IdentityServer.AuthServer
                     RequireConsent = true, // Client1-Mvc ile login olunca yetkiler tikli şekilde onay/rıza sayfası açılır. tikli olanlar cookie içine eklenir. Yalnız refreshtoken ( Offline Access) aldğımız için bu seimler memoryde kaydedilmez,  her girişte onay sayfası açılır. Offline Access Client tarafından ( opts.Scope.Add("offline_access");) kapatılırsa o zaman seçenkler memorye kaydedilir ve her loginde bir daha sormaz - Remember My Decision tikliyse.
 
                 }, 
+
+
+
+
+
+
+                  // Client 2 : https://localhost:7123
+                new Client()
+                {
+                    ClientId="Client2-Mvc",
+                    ClientName= "Client 2 app Mvc application",
+                    RequirePkce= false, // serverside uygulama
+                    ClientSecrets= new []{ new Secret("secret".Sha256())},
+                    AllowedGrantTypes= GrantTypes.Hybrid,
+                    RedirectUris = new List<string>{ "https://localhost:7123/signin-oidc" }, // token alma işlemini gerçekleştiren url : Authorize Endpoint bu urle dönüş yapar otomatik, OpenIdConnect paketi kullandığımız için   bu URL otomatik oluşur
+
+                    PostLogoutRedirectUris=new List<string>{"https://localhost:7123/signout-callback-oidc"}, // signout olunca nereye yönlendirilecek kullanıcı?  2 tarafta da yapılması gereken logout sonrası açılacak sayfa openId protokolünün sayfaları, openId kütüphanesi ile bu url otomatik oluşuyor
+
+                    AllowedScopes =
+                    {
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile,
+                        "api1.read" ,
+                        "api2.read" ,
+                        IdentityServerConstants.StandardScopes.OfflineAccess,
+                        "CountryAndCity",
+
+                        "Roles"
+                    },
+
+                    AccessTokenLifetime = 2*60*60, // 2 hours
+
+                    AllowOfflineAccess = true, // Refresh token!, bunu ekleyince scope da eklemek gerekli hem buraya hem de client tarafına :IdentityServerConstants.StandardScopes.OfflineAccess
+                    RefreshTokenUsage = TokenUsage.ReUse,
+                    RefreshTokenExpiration = TokenExpiration.Absolute,
+                    AbsoluteRefreshTokenLifetime = (int)(DateTime.Now.AddDays(60) - DateTime.Now).TotalSeconds,
+
+                    RequireConsent = false, // Client1-Mvc ile login olunca yetkiler tikli şekilde onay/rıza sayfası açılır. tikli olanlar cookie içine eklenir. Yalnız refreshtoken ( Offline Access) aldğımız için bu seimler memoryde kaydedilmez,  her girişte onay sayfası açılır. Offline Access Client tarafından ( opts.Scope.Add("offline_access");) kapatılırsa o zaman seçenkler memorye kaydedilir ve her loginde bir daha sormaz - Remember My Decision tikliyse.
+
+                }, 
+
+
 	            #endregion
 
             };
