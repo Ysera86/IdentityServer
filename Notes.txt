@@ -90,3 +90,18 @@ clientlarda OpenIdCOnnect paketleri bunu otomatik yaparlar.
 
 merkezi üyelik sistemi kullanýyosak (hepsinin yönetimi bizdeyse client,Identity vs:  Resource Owner credentials Grant Type):  PKCE kullanmalý.
 clientta kendi loginim var ise arkada username & password gönderilir buna gerek kalmaz.
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+Client1.ProductsController.IndexCentralized()
+
+   HttpClient client = new HttpClient();
+   var token = await HttpContext.GetTokenAsync(OpenIdConnectParameterNames.AccessToken);
+   client.SetBearerToken(token);
+
+Her bir istek get/post farketmez, yapacaðýmýz zaman bu 3 satýfý sabit kullanmamýz gerekecek, bunun yerine HttpContextAccessor kullanýrýz controllerýn arkasýndaki serviste, onun da Contexti var içinden token ve bilgilere eriþebiliriz.
+
+HttpContext.GetTokenAsync(OpenIdConnectParameterNames.AccessToken);  >> satýrýndaki HttpContext controllerda var, ancak biz üstteki kýsmý merkezileþtr,p best practice ile servise taþýsak o nesne elimizde olmicak, bu nedenlde aþaðýdaki þekilde DI yaptýk ve artýk serviste de DI ile eriþebildik contexte ve her request için 3satýr yerine artýk elimizde tokený da olan bir client oldu ApiResourceHttpClient.GetHttpClient() ile.
+
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<IApiResourceHttpClient, ApiResourceHttpClient>();

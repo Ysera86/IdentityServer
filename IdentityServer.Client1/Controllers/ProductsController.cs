@@ -1,5 +1,6 @@
 ﻿using IdentityModel.Client;
 using IdentityServer.Client1.Models;
+using IdentityServer.Client1.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -13,9 +14,11 @@ namespace IdentityServer.Client1.Controllers
     {
         private readonly IConfiguration _configuration;
 
-        public ProductsController(IConfiguration configuration)
+        private readonly IApiResourceHttpClient _apiResourceHttpClient;
+        public ProductsController(IConfiguration configuration, IApiResourceHttpClient apiResourceHttpClient)
         {
             _configuration = configuration;
+            _apiResourceHttpClient = apiResourceHttpClient;
         }
 
         #region Üyeliksiz, ClientId ve ClientSecret ile token alıp APIdan data çekme
@@ -74,6 +77,7 @@ namespace IdentityServer.Client1.Controllers
         }
 
         #endregion
+      
         #region Üyelikli token ile APIdan data çekme
 
         [Authorize]
@@ -142,7 +146,39 @@ namespace IdentityServer.Client1.Controllers
             return View(productList);
         }
 
+        #endregion
 
+        #region Üyelikli token ile APIdan data çekme 2 : Best Practice with HttpContextAccessor
+
+        [Authorize]
+        public async Task<IActionResult> IndexCentralizedBestPractice()
+        {
+            //HttpClient client = new HttpClient();
+            //var token = await HttpContext.GetTokenAsync(OpenIdConnectParameterNames.AccessToken);
+            //client.SetBearerToken(token);
+
+            // üstteki 3 satır gitti bu satır geldi! detaylar Notes içinde!
+            HttpClient client = await _apiResourceHttpClient.GetHttpClient();
+
+            // Aslında product service içine crud ile DIdan bu işlemi yapmak laxım..
+            var response = await client.GetAsync("https://localhost:7007/api/Products/GetProducts");
+
+
+            List<Product> productList = null;
+            if (response.IsSuccessStatusCode)
+            {
+                var content = await response.Content.ReadAsStringAsync();
+
+                productList = JsonSerializer.Deserialize<List<Product>>(content);
+            }
+            else
+            {
+                // hata var data alınamadı logla vs
+            }
+
+
+            return View(productList);
+        }
 
         #endregion
 

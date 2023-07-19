@@ -1,3 +1,4 @@
+using IdentityServer.Client1.Services;
 using Microsoft.AspNetCore.Authentication;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -5,7 +6,12 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-//.. Bu kýsmý ekleyerek merkezi bir üyelik sistemine çevirmiþ olduk
+//..
+
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<IApiResourceHttpClient, ApiResourceHttpClient>();
+
+// Bu kýsmý ekleyerek merkezi bir üyelik sistemine çevirmiþ olduk
 // üyelik sistemlerini (cookie mekanizmalarýný ayýrmak için þemalar kullanýlýr, ör. bayii ve kullanýcý için mesela. Ayrý þemalar gerekecekti.
 
 builder.Services.AddAuthentication(options =>
