@@ -1,6 +1,7 @@
 using IdentityServer.AuthServer;
 using IdentityServer.AuthServer.Models;
 using IdentityServer.AuthServer.Repositories;
+using IdentityServer.AuthServer.Services;
 using IdentityServer4.Validation;
 using Microsoft.EntityFrameworkCore;
 
@@ -22,8 +23,10 @@ builder.Services.AddIdentityServer()
     .AddInMemoryClients(Config.GetClients())
 
     .AddInMemoryIdentityResources(Config.GetIdentityResources())    
-    .AddTestUsers(Config.GetTestUsers().ToList())
     
+    .AddProfileService<CustomProfileService>() // CustomProfileService ile Claimlerimi ekledim.
+     //.AddTestUsers(Config.GetTestUsers().ToList())// CustomUser ekledik  artýk gerçek dbden gerçek kullanýcý kullanýyoruz, testuserlara gerek yok
+
     //.AddSigningCredential() // proda çýkarken aç
     .AddDeveloperSigningCredential(); // proda çýkarken kapat  => projeye eklendi :  tempkey.jwk
 

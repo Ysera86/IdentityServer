@@ -31,7 +31,7 @@ namespace IdentityServerHost.Quickstart.UI
     public class AccountController : Controller
     {
         //private readonly TestUserStore _users;
-        private readonly CustomUserRepository _customUserRepository;
+        private readonly ICustomUserRepository _customUserRepository;
         private readonly IIdentityServerInteractionService _interaction;
         private readonly IClientStore _clientStore;
         private readonly IAuthenticationSchemeProvider _schemeProvider;
@@ -43,7 +43,7 @@ namespace IdentityServerHost.Quickstart.UI
             IAuthenticationSchemeProvider schemeProvider,
             IEventService events,
             //TestUserStore users = null,
-            CustomUserRepository customUserRepository = null)
+            ICustomUserRepository customUserRepository)
         {
             // if the TestUserStore is not in DI, then we'll just use the global users collection
             // this is where you would plug in your own custom identity management library (e.g. ASP.NET Identity)
