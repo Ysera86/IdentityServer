@@ -1,5 +1,6 @@
 using IdentityServer.AuthServer;
 using IdentityServer.AuthServer.Models;
+using IdentityServer.AuthServer.Repositories;
 using IdentityServer4.Validation;
 using Microsoft.EntityFrameworkCore;
 
@@ -7,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<ICustomUserRepository,CustomUserRepository>();
 
 builder.Services.AddDbContext<CustomDbContext>(option =>
 {
