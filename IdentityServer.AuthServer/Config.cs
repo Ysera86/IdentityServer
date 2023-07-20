@@ -80,6 +80,7 @@ namespace IdentityServer.AuthServer
 
                     AllowedScopes =
                     {
+                        IdentityServerConstants.StandardScopes.Email,
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
                         "api1.read" ,
@@ -158,6 +159,9 @@ namespace IdentityServer.AuthServer
         {
             return new List<IdentityResource>
             {
+                new IdentityResources.Email(), // claimlerden emil alınabilmesi için
+
+
                 new IdentityResources.OpenId(), // == subId kullanıcı ID
                 new IdentityResources.Profile(), // userın claimleri (https://developer.okta.com/blog/2017/07/25/oidc-primer-part-1)
 

@@ -39,6 +39,9 @@ builder.Services.AddAuthentication(options =>
     opts.Scope.Add("offline_access"); // Config. Client1-Mvc için refresh token eklendi scope da eklendi, buraya da eklendi.
 
     opts.Scope.Add("CountryAndCity");  // scope eklemek yetmez burada talep ettim. custom claim olduklarý için de maplemem lazým
+
+    opts.Scope.Add("email");
+
     opts.ClaimActions.MapUniqueJsonKey("country", "country");
     opts.ClaimActions.MapUniqueJsonKey("city", "city");
 

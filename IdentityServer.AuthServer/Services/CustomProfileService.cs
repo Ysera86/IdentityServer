@@ -29,9 +29,19 @@ namespace IdentityServer.AuthServer.Services
 
             var claims = new List<Claim>()
             {
-                new Claim(JwtRegisteredClaimNames.Email, user.Email),
-                new Claim(ClaimTypes.Name, user.UserName), // Controller da User.Identity.Name diyip alıcam mapleme önemli
+                new Claim(JwtRegisteredClaimNames.Email, user.Email), // Client1. program opts.Scope.Add("email"); ile alacağımızı söyledik, yoksa alamazdık
+
+
+                // Bu claimi alabilmek için :
+                // 1 - AuthServer.Config.GetIdentityResources() içinde gerekli IdentityResource eklenmeli : new IdentityResources.Email(),
+                // 2 - GetClients ile de AllowedScopes içine  IdentityServerConstants.StandardScopes.Email, eklenmeli
+                // 3 - ClaimTypes.Name aslında upuzun bir şema adı tutuyor ama Profile tarafında bu alan name olmalı
+                // Client1-Mvc ye IdentityServerConstants.StandardScopes.Profile, Profile scopeunu verdik 
+                new Claim("name", user.UserName), // Controller da User.Identity.Name diyip alıcam mapleme önemli
                 // new Claim("username", user.UserName) // o zaman User.Claims.First(x=>x.Type=="username").Value ile alabilirm.
+                
+
+
                 new Claim("city", user.City)
             };
 
@@ -44,7 +54,7 @@ namespace IdentityServer.AuthServer.Services
                 claims.Add(new Claim("role", "customer"));
             }
 
-            context.AddRequestedClaims(claims); // cookieye ekler
+            context.AddRequestedClaims(claims); // cookieye ekler "izin verilen" claimleri
 
             //context.IssuedClaims = claims; // claimleri jwt içine gömer. ama token mümkün olduğunca hafif olsun sadece scopelar kalsın ve user bilgileri userInfo endpointten gelsin.
         }
