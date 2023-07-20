@@ -105,3 +105,10 @@ HttpContext.GetTokenAsync(OpenIdConnectParameterNames.AccessToken);  >> satýrýnd
 
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<IApiResourceHttpClient, ApiResourceHttpClient>();
+
+---------------------------------------------------------------------------------
+
+Üyelik sistemi :
+-----------------
+1 - Identity API (IdentityServer) hazýr tablolar üyelik sistemi vs (OAuth2.0, poenId Connect vs), istediðimiz gibi ek özellik katabiliriz. 
+2 - Custom üyelik sistemi - IdentityServer ile nasýl konuþtururuz ..
